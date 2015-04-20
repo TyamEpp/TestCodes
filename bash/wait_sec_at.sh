@@ -7,16 +7,16 @@ function wait_sec_at () {
     SEC_AT=${1}
     NOW=$(date "+%S")
     if [ ${NOW} == ${SEC_AT} ]; then
-	echo "  [debug print]" NOW:${NOW} == SEC_AT:${SEC_AT} ... $(date "+%H:%M:%S") return
+#	echo "  [debug print]" NOW:${NOW} == SEC_AT:${SEC_AT} ... $(date "+%H:%M:%S") return
 	return
     fi
     SleepSec=$(( ${SEC_AT} - ${NOW} ))
     if [ ${SleepSec} -lt 0 ]; then
 	SleepSec=$(( ${SleepSec} + 60 ))
     fi
-    echo "  [debug print]" NOW:${NOW} != SEC_AT:${SEC_AT}, sleep ${SleepSec}s ... $(date "+%H:%M:%S")
+#    echo "  [debug print]" NOW:${NOW} != SEC_AT:${SEC_AT}, sleep ${SleepSec}s ... $(date "+%H:%M:%S")
     sleep ${SleepSec}s
-    echo "  [debug print]" sleep done ... $(date "+%H:%M:%S")
+#    echo "  [debug print]" sleep done ... $(date "+%H:%M:%S")
     return
 }
 
