@@ -1,0 +1,2 @@
+mkimage-yum.sh is copied from docker official
+https://github.com/docker/docker/blob/master/contrib/mkimage-yum.sh
