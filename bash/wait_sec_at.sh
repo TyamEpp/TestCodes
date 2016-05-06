@@ -2,6 +2,7 @@
 
 function wait_sec_at () {
     if [ $# -eq 0 ]; then
+	echo "usage: wait_sec_at second"
         return
     fi
     SEC_AT=${1}
