@@ -1,0 +1,53 @@
+[目的]
+checker.shが、
+$ source checker.sh されたのか、
+$ bash hoge.sh (ないしは./hoge.sh)
+されたのかを判定したい。
+
+[実装]
+SHELLがインタラクティブかを判定するのが簡単で、
+その実装になっている。
+
+[結果]
+# インタラクティブシェルから実行すると以下のようになるはず
+## 後半はただの言い換えなのでok
+$ source checker.sh
+[result] source !
+$ bash checker.sh
+[result] sh !
+$ . checker.sh
+[result] source !
+$ ./checker.sh
+[result] sh !
+
+
+[目的2]
+checker2.shが、
+入れ子構造のスクリプト、parent.shの中で、
+source checker.sh されたのか、
+bash hoge.sh (ないしは./hoge.sh)
+されたのかを判定したい。
+
+[実装2]
+$0は走っているプロセス自身を示すようで、
+sourceの場合には書き換わらず、
+実行した場合にはそのスクリプト名を示すようだ。
+一方、BASH_SOURCEはどのファイルに書かれているかを示すようで、
+sourceした場合にも実行した場合にもchecker2.shとなる。
+これらの一致を見ることでsourceされたのかを確認できる。
+
+[結果]
+$ ./parent.sh
+source checker.sh
+[result] sh !
+bash checker.sh
+[result] sh !
+source checker2.sh
+[result] source !
+bash checker2.sh
+[result] sh !
+# インタラクティブシェルから実行すると以下のようになるはず
+$ source checker2.sh
+[result] source !
+$ bash checker2.sh
+[result] sh !
